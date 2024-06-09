@@ -1,0 +1,6 @@
+name: mempool-fetcher
+on: pull_request
+jobs:
+  fetch-mempool-data:
+    runs-on: ubuntu-latest
+    
