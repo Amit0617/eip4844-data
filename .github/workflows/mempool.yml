@@ -1,6 +1,19 @@
 name: mempool-fetcher
-on: pull_request
+on: push
 jobs:
   fetch-mempool-data:
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./scripts
+    steps:
+      - uses: actions/checkout@v4
+      - name: get one day mempool data
+        run: ./scripts/download_mempool-day.sh 20240313
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: Github actions
+          author_email: actions@github.com
+          message: 'uploading file'
+          add: '*.csv.gz'
