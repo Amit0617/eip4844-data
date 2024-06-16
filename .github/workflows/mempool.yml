@@ -13,8 +13,6 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          default_author: github_actions
-          committer_name: Github actions
-          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+          default_author: github_actor
           message: 'uploading file'
           add: '*.csv.gz'
