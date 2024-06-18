@@ -13,8 +13,10 @@ jobs:
       - name: Gunzip data
         run: gunzip *.csv.gz
         working-directory: ./data
+      - name: Display the data
+        run: ls -l
       - name: Filter missing data
-        run: ./filter-private-transactions.py
+        run: python filter-private-transactions.py
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
