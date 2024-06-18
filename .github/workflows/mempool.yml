@@ -13,8 +13,14 @@ jobs:
       - name: Gunzip data
         run: gunzip *.csv.gz
         working-directory: ./data
-      - name: Display the data
-        run: ls -l
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Filter missing data
         run: python filter-private-transactions.py
       - name: Commit changes
