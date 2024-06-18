@@ -10,10 +10,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: get one day mempool data
         run: ./download_mempool_custom.sh --hour-range 20240313:00-01
+      - name: Gunzip data
+        run: gunzip *.csv.gz
+      - name: Filter missing data
+        run: ./filter-private-transactions.py
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actor
           author_email: 71893015+Amit0617@users.noreply.github.com
           message: 'uploading file'
-          add: '*.csv.gz'
+          add: '*.csv'
