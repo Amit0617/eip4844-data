@@ -5,11 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./scripts
+        working-directory: ./data
     steps:
       - uses: actions/checkout@v4
       - name: get one day mempool data
-        run: ./download_mempool_custom.sh --hour-range 20240313:00-01
+        run: ../scripts/download_mempool_custom.sh --hour-range 20240313:00-01
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
