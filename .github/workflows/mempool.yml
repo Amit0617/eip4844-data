@@ -12,6 +12,7 @@ jobs:
         run: ./download_mempool_custom.sh --hour-range 20240313:00-01
       - name: Gunzip data
         run: gunzip *.csv.gz
+        working-directory: ./data
       - name: Filter missing data
         run: ./filter-private-transactions.py
       - name: Commit changes
