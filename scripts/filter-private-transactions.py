@@ -9,11 +9,14 @@ for filename in os.listdir(directory):
     with open(f'{directory}/private-transactions.csv', 'a') as file:
         if filename.endswith(".csv"):
             print(filename)
-            df = pd.read_csv(f'{directory}/{filename}')
-            # Filter the data
-            df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
-            # Save the filtered data
-            df.to_csv(file, index=False)
+            try:
+                df = pd.read_csv(f'{directory}/{filename}')
+                # Filter the data
+                df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
+                # Save the filtered data
+                df.to_csv(file, index=False)
+            except:
+                print(f'Error in {filename}')
         else:
             continue
 print('Done!')
