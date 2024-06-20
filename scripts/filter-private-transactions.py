@@ -8,7 +8,7 @@ import os
 directory = '../data' # github action's working directory is scripts directory
 for filename in os.listdir(directory):
     with open(f'{directory}/private-transactions2.csv', 'a') as file:
-        if filename.endswith(".csv") and filename != 'private-transactions.csv':
+        if filename.endswith(".csv") and filename != 'private-transactions.csv' and filename != 'private-transactions2.csv':
             print(filename)
             try:
                 df = pd.read_csv(f'{directory}/{filename}', sep='\t')
