@@ -28,4 +28,4 @@ jobs:
         with:
           default_author: github_actions
           message: 'uploading file'
-          add: 'data/private-transactions.csv'
+          add: 'data/private-transactions2.csv'
