@@ -1,6 +1,7 @@
 # A script to find all transactions with timepending = 0 and status = 'confirmed' and blobversionedhashes is not Null
 import csv
 import pandas as pd
+import traceback
 
 # Check all the csv files in the current directory
 import os
@@ -17,6 +18,10 @@ for filename in os.listdir(directory):
                 df.to_csv(file, index=False)
             except:
                 print(f'Error in {filename}')
+                # print the error
+                print(traceback.format_exc())
+                # Skip the line if there is an error
+                continue
         else:
             continue
 print('Done!')
