@@ -8,12 +8,16 @@ import os
 directory = '../data' # github action's working directory is scripts directory
 for filename in os.listdir(directory):
     with open(f'{directory}/private-transactions.csv', 'a') as file:
-        if filename.endswith(".csv"):
+        if filename.endswith(".csv") and filename != 'private-transactions.csv':
             print(filename)
             try:
-                df = pd.read_csv(f'{directory}/{filename}')
+                df = pd.read_csv(f'{directory}/{filename}', sep='\t')
                 # Filter the data
-                df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
+                # if blobversionedhashes column exists
+                if 'blobversionedhashes' not in df.columns:
+                    df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed')]
+                else:
+                    df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
                 # Save the filtered data
                 df.to_csv(file, index=False)
             except:
