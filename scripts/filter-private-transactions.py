@@ -7,7 +7,7 @@ import traceback
 import os
 directory = '../data' # github action's working directory is scripts directory
 for filename in os.listdir(directory):
-    with open(f'{directory}/private-transactions.csv', 'a') as file:
+    with open(f'{directory}/private-transactions2.csv', 'a') as file:
         if filename.endswith(".csv") and filename != 'private-transactions.csv':
             print(filename)
             try:
@@ -17,6 +17,7 @@ for filename in os.listdir(directory):
                 if 'blobversionedhashes' not in df.columns:
                     df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed')]
                 else:
+                    print("as expected")
                     df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
                 # Save the filtered data
                 df.to_csv(file, index=False)
