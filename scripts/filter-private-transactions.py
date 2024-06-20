@@ -18,7 +18,7 @@ for filename in os.listdir(directory):
                     df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed')]
                 else:
                     print("as expected")
-                    df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notnull())]
+                    df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notna())]
                 # Save the filtered data
                 df.to_csv(file, index=False)
             except:
