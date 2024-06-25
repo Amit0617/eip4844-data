@@ -52,4 +52,4 @@ jobs:
         with:
             default_author: github_actor
             message: 'Update mempool date'
-            add: '.github/workflows/mempool.yml'
+            add: './.github/workflows/mempool.yml'
