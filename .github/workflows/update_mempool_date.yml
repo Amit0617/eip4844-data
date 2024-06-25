@@ -1,8 +1,8 @@
 name: Update Mempool Date
 
-on: push
-#   schedule:
-#     - cron: '0 * * * *'  # Run every hour
+on:
+  schedule:
+    - cron: '0 * * * *'  # Run every hour
 
 jobs:
   update-date:
