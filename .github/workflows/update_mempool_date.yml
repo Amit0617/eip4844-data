@@ -1,0 +1,53 @@
+name: Update Mempool Date
+
+on:
+#   schedule:
+#     - cron: '0 * * * *'  # Run every hour
+    push
+
+jobs:
+  update-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Update mempool.yml
+        run: |
+          import re
+          import datetime
+
+          # Read the current mempool.yml file
+          with open('.github/workflows/mempool.yml', 'r') as file:
+              content = file.read()
+
+          # Extract the current date
+          match = re.search(r'--hour-range (\d{8}):00-23', content)
+          if match:
+              current_date = match.group(1)
+              # Parse the date and increment by one day
+              new_date = (datetime.datetime.strptime(current_date, '%Y%m%d') + datetime.timedelta(days=1)).strftime('%Y%m%d')
+              
+              # Replace the old date with the new date
+              new_content = content.replace(f'--hour-range {current_date}:00-23', f'--hour-range {new_date}:00-23')
+              
+              # Write the updated content back to the file
+              with open('.github/workflows/mempool.yml', 'w') as file:
+                  file.write(new_content)
+              
+              print(f"Updated date from {current_date} to {new_date}")
+          else:
+              print("Date pattern not found in mempool.yml")
+        shell: python
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .github/workflows/mempool.yml
+          git commit -m "Update mempool date" || echo "No changes to commit"
+          git push
