@@ -5,6 +5,9 @@ on:
 #     - cron: '0 * * * *'  # Run every hour
     push
 
+permissions: 
+    actions: write
+    
 jobs:
   update-date:
     runs-on: ubuntu-latest
@@ -46,8 +49,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email " 71893015+Amit0617@users.noreply.github.com "
-          git config --local user.name "Amit0617"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .github/workflows/mempool.yml
           git commit -m "Update mempool date" || echo "No changes to commit"
           git push
