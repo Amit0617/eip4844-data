@@ -17,10 +17,9 @@ for filename in os.listdir(directory):
                 if 'blobversionedhashes' not in df.columns:
                     df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed')]
                 else:
-                    print("as expected")
                     df = df[(df['timepending'] == 0) & (df['status'] == 'confirmed') & (df['blobversionedhashes'].notna())]
-                # Save the filtered data
-                df.to_csv(file, index=False)
+                # Save the filtered data without header
+                df.to_csv(file, index=False, header=False)
             except:
                 print(f'Error in {filename}')
                 # print the error
