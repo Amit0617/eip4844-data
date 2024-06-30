@@ -28,4 +28,25 @@ for filename in os.listdir(directory):
                 continue
         else:
             continue
-print('Done!')
+
+# Read the created csv file and update README.md with the number of transactions
+df = pd.read_csv(f'{directory}/private-transactions2.csv')
+# number of transactions per day
+transactions_per_day = df['detect_date'].value_counts().sort_index()
+# unique dates
+dates = transactions_per_day.index
+with open(f'../README.md', 'w') as readme:
+    # number of transactions per day in the README.md for creating mermaid xy chart
+    readme.write('```mermaid\n')
+    # configs for the chart
+    readme.write('---\n')
+    readme.write('config:\n')
+    readme.write('    xyChart:\n')
+    readme.write('        width: ' + str(len(dates) * 80) + '\n')     # width of the chart should be dates length * 80 for no overlapping
+    readme.write('        height: 600\n')
+    readme.write('---\n')
+    # chart data
+    readme.write('xychart-beta title="Number of private blob transactions per day"\n')
+    readme.write('x-axis "Date" [' + ','.join([str(date) for date in dates]) + ']' + '\n')
+    readme.write('y-axis "Number of Transactions"\n')
+    readme.write('bar[' + ','.join([str(tx_count) for tx_count in transactions_per_day]) + ']' + '\n')
