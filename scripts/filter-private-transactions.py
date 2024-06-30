@@ -2,9 +2,9 @@
 import csv
 import pandas as pd
 import traceback
+import os
 
 # Check all the csv files in the current directory
-import os
 directory = '../data' # github action's working directory is scripts directory
 for filename in os.listdir(directory):
     with open(f'{directory}/private-transactions2.csv', 'a') as file:
@@ -29,12 +29,14 @@ for filename in os.listdir(directory):
         else:
             continue
 
-# Read the created csv file and update README.md with the number of transactions
+# Read the created csv file and update README.md for plotting chart
+print("Reading the created csv file")
 df = pd.read_csv(f'{directory}/private-transactions2.csv')
 # number of transactions per day
 transactions_per_day = df['detect_date'].value_counts().sort_index()
 # unique dates
 dates = transactions_per_day.index
+print("Writing to README.md")
 with open(f'../README.md', 'w') as readme:
     # number of transactions per day in the README.md for creating mermaid xy chart
     readme.write('```mermaid\n')
@@ -50,3 +52,4 @@ with open(f'../README.md', 'w') as readme:
     readme.write('x-axis "Date" [' + ','.join([str(date) for date in dates]) + ']' + '\n')
     readme.write('y-axis "Number of Transactions"\n')
     readme.write('bar[' + ','.join([str(tx_count) for tx_count in transactions_per_day]) + ']' + '\n')
+    readme.write('```')
