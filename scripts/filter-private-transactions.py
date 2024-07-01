@@ -48,7 +48,7 @@ with open(f'../README.md', 'w') as readme:
     readme.write('        height: 600\n')
     readme.write('---\n')
     # chart data
-    readme.write('xychart-beta title="Number of private blob transactions per day"\n')
+    readme.write('xychart-beta title "Number of private blob transactions per day"\n')
     readme.write('x-axis "Date" [' + ','.join([str(date) for date in dates]) + ']' + '\n')
     readme.write('y-axis "Number of Transactions"\n')
     readme.write('bar[' + ','.join([str(tx_count) for tx_count in transactions_per_day]) + ']' + '\n')
