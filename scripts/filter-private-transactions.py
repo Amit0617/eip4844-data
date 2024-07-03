@@ -64,4 +64,4 @@ with open(f'../README.md', 'w') as readme:
         # split the transactions per day into separate arrays for each month
         tx_per_day = [transactions_per_day[date] for date in month_dates]
         readme.write('bar[' + ','.join([str(tx_count) for tx_count in tx_per_day]) + ']' + '\n')
-        readme.write('```')
+        readme.write('```\n\n')
