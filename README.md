@@ -80,12 +80,12 @@ bar[6,4,5,5,5,4,5,5,5,5,6,5,6,12,12,10,12,10,10,11,6,8,10,8,8,7,11,11,10,645,722
 ---
 config:
     xyChart:
-        width: 160
+        width: 240
         height: 600
 ---
 xychart-beta title "Number of private blob transactions per day in 09th month"
-x-axis "Date" [2024-09-01,2024-09-02]
+x-axis "Date" [2024-09-01,2024-09-02,2024-09-03]
 y-axis "Number of Transactions"
-bar[563,721]
+bar[563,721,583]
 ```
 
