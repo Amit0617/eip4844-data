@@ -89,3 +89,16 @@ y-axis "Number of Transactions"
 bar[563,721,583,537,519,400,440,365,541,543,506,617,585,746,737,603,764,919,709,712,1058,1038,982,980,921,797,893,634,989,968]
 ```
 
+```mermaid
+---
+config:
+    xyChart:
+        width: 80
+        height: 600
+---
+xychart-beta title "Number of private blob transactions per day in 10th month"
+x-axis "Date" [2024-10-01]
+y-axis "Number of Transactions"
+bar[717]
+```
+
