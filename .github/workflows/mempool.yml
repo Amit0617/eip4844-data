@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: get one day mempool data
-        run: ./download_mempool_custom.sh --hour-range 20241022:00-23
+        run: ./download_mempool_custom.sh --hour-range 20241023:00-23
       - name: Gunzip data
         run: gunzip *.csv.gz
         working-directory: ./data
