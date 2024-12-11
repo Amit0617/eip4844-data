@@ -75,7 +75,7 @@ with open(f'../README.md', 'w') as readme:
         readme.write('config:\n')
         readme.write('    xyChart:\n')
         # width of the chart should be dates length * 80 for no overlapping
-        readme.write('        width: ' + str(len(month_dates) * 80) + '\n')
+        readme.write('        width: ' + str(len(month_dates) * 85) + '\n')
         readme.write('        height: 600\n')
         readme.write('---\n')
         # chart data
